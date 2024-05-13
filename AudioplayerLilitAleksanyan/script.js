@@ -20,3 +20,35 @@ let data = {
              "https://i.ytimg.com/vi/nwdGPR_JPao/maxresdefault.jpg",
 ]
 }
+let song = new Audio()
+
+window.onload = function (){
+    playSong()
+
+}
+let currentSong = 0
+function playSong(){
+    song.src = data.song[currentSong]
+    let songTitle = document.getElementById("songTitle")
+    songTitle.textContent = data.title[currentSong]
+    let img = document.getElementsByClassName("row1")
+    img[0].style.backgroundImage = "url(" + data.poster[currentSong]+")"
+    let main = document.getElementsByClassName("row1")
+    main[0].style.backgroundImage = "url(" + data.poster[currentSong]+")"
+song.play()
+
+}
+function  playOrPauseSong(){
+    let play = document.getElementById("play")
+    if(song.paused){
+        song.play()
+        play.src = "image/pause.png"
+    }else{
+        play.src = "image/play-button-arrowhead.png"
+    }
+}
+song.addEventListener("timeupdate",function(){
+    let fill = document.getElementsByClassName("fill")
+    let position = song.currentTime/song.duration
+    fill[0].style.width.marginLeft = position * 99 +"%"
+})
