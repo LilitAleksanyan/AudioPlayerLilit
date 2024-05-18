@@ -135,3 +135,5 @@ function increase(){
         mute.src = "images/volume.png"
     }
 }
+
+//final
