@@ -15,7 +15,7 @@ height: 100%;
 
 background-image: url("https://i.ytimg.com/vi/8Gy2ZDGLteQ/sddefault.jpg");
 background-size: cover;
-filter: blur(8px);
+filter: blur(5px);
 background-position-y: 50%;
 background-position-x: 50%;
 }
@@ -116,7 +116,7 @@ border-radius: 25px;
 
 .fill {
 height: 8px;
-width: 1px;
+width: 8px;
 border-radius: 25px;
 background-color: lightblue;
 z-index: 999;
@@ -178,5 +178,16 @@ margin: 5px;
 }
 
 
+#repeatButton{
+    height: 30px;
+    width: 30px;
+   color: black;
+   border: none;
+   border-radius: 20px;
+   font-size: 16px;
+   margin-top: 10px;
+    position: absolute;
+   right: 90%;
+}
 
     

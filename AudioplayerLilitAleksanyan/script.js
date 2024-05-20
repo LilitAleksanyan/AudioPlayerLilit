@@ -13,7 +13,8 @@ let data = {
         "music/2e849b6a74592e9a96506acec6b3587c_nemra-daisy.mp3",
         "music/Nemra - Nare (Original Instrumental, Karaoke, Minus) 2020.mp3",
     ],
-    poster: ["https://i.ytimg.com/vi/8Gy2ZDGLteQ/sddefault.jpg",
+    poster: [
+        "https://i.ytimg.com/vi/8Gy2ZDGLteQ/sddefault.jpg",
         "https://i1.sndcdn.com/artworks-000133937425-n6zixi-t500x500.jpg",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF2glJgJADyP3u6nFHWJ8kbkonr268EA-aF-OaG4Hyyw&s",
         "https://images.genius.com/62d7ead5a96680000bb8458179f4ca55.592x592x1.png",
@@ -33,8 +34,9 @@ function playSong() {
     songTitle.textContent = data.title[currentSong]
     let img = document.getElementsByClassName("row1")
     img[0].style.backgroundImage = "url(" + data.poster[currentSong] + ")"
-    let main = document.getElementsByClassName("row1")
+    let main = document.getElementsByClassName("main")
     main[0].style.backgroundImage = "url(" + data.poster[currentSong] + ")"
+    console.log(main[0]);
     song.play()
 
 }
@@ -52,7 +54,7 @@ function playOrPauseSong() {
 song.addEventListener("timeupdate", function () {
     let fill = document.getElementsByClassName("fill")
     let position = song.currentTime / song.duration
-    fill[0].style.width.marginLeft = position * 99 + "%"
+    fill[0].style.marginLeft = position * 99 + "%"
 
     convertTime(song.currentTime)
     if (song.ended) {
@@ -105,35 +107,50 @@ function next() {
     if (currentSong == data.song.length) {
         currentSong = 0
 
-    }        
+    }
     playSong()
     play.src = "images/pause.png"
 
 }
 
-function mute(){
+function mute() {
     let mute = document.getElementsById("mute")
-    if(song.muted){
-song.muted = false 
-mute.src = "images/volume.png"
-    }else{
+    if (song.muted) {
+        song.muted = false
+        mute.src = "images/volume.png"
+    } else {
         song.muted = true
-        mute,src = "images/volume-mute.png"
+        mute, src = "images/volume-mute.png"
     }
 }
 
-function decrease(){
-song.volume -= 0.2
-if (song.volume<=0.1){
-    mute.src = "images/volume-mute.png"
-}
+function decrease() {
+    song.volume -= 0.2
+    if (song.volume <= 0.1) {
+        mute.src = "images/volume-mute.png"
+    }
 }
 
-function increase(){
+function increase() {
     song.volume += 0.2
-    if (song.volume<=0.2){
+    if (song.volume <= 0.2) {
         mute.src = "images/volume.png"
     }
 }
 
+
+let audio = document.getElementById("audio");
+let repeatBtn = document.getElementById("repeatButton");
+console.log(repeatBtn);
+repeatBtn.addEventListener("click", function () {
+    if (song.loop) {
+        song.loop = false;
+        repeatBtn.textContent = "Repeat";
+    
+}else {
+    song.loop = true;
+    repeatBtn.textContent = "Stop Repeat";
+
+}
+})
 //final
