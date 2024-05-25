@@ -18,7 +18,7 @@ let data = {
         "https://i1.sndcdn.com/artworks-000133937425-n6zixi-t500x500.jpg",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF2glJgJADyP3u6nFHWJ8kbkonr268EA-aF-OaG4Hyyw&s",
         "https://images.genius.com/62d7ead5a96680000bb8458179f4ca55.592x592x1.png",
-        "https://i.ytimg.com/vi/nwdGPR_JPao/maxresdefault.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNuH2blKsn1YW9GOPInrc1V2M8om4A23-88XAgDAvOGw&s",
     ]
 }
 let song = new Audio()
@@ -153,4 +153,25 @@ repeatBtn.addEventListener("click", function () {
 
 }
 })
+
+
+
+
+let shuffledSequence = [];
+let isMixed = false;
+document.getElementById('mixButton').addEventListener('click', mixSongs);
+function mixSongs(){
+    shuffledSequence = Array.from({ length: data.title.length }, (_, i) => i);
+    for (let i = shuffledSequence.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledSequence[i], shuffledSequence[j]] = [shuffledSequence[j], shuffledSequence[i]];
+    }
+    isMixed = true;
+    currentSong = shuffledSequence[0];
+    playSong();
+}
+
+
+
+
 //final
